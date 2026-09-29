@@ -1,0 +1,4 @@
+@model List<Faq>
+@{ViewData["Title"]="FAQs";}<div class="pagehead"><h1>Frequently asked questions</h1>@if(User.IsInRole("Admin")){<a class="button" asp-action="Edit">Add FAQ</a>}</div><div class="panel">
+@foreach(var f in Model){<details><summary>@f.Question</summary><p>@f.Answer</p>@if(User.IsInRole("Admin")){<a asp-action="Edit" asp-route-id="@f.Id">Edit</a><form asp-action="Delete" method="post" class="inline"><input type="hidden" name="id" value="@f.Id"/><button class="danger">Delete</button></form>}</details>}
+@if(Model.Count==0){<p class="empty">No FAQs yet.</p>}</div>

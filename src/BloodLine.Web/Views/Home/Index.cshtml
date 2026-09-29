@@ -1,0 +1,11 @@
+@model DashboardViewModel
+@{ViewData["Title"]="Overview";}
+<h1>@Model.BankName</h1><p class="lead">A clear view of your blood-bank operations.</p>
+@if(User.IsInRole("Admin")){
+<div class="stats"><div class="stat"><strong>@Model.PendingRequests</strong><span>Pending requests</span></div><div class="stat"><strong>@Model.Donors</strong><span>Registered blood banks</span></div><div class="stat"><strong>@Model.Staff</strong><span>Team accounts</span></div></div>
+<div class="grid"><section class="panel"><h2>Registration requests</h2><p>Review organizations applying to join BloodLine.</p><a class="button" asp-controller="Registration" asp-action="Index">Review requests</a></section><section class="panel"><h2>Help your community</h2><p>Keep frequently asked questions clear and up to date.</p><a class="button" asp-controller="Faq" asp-action="Index">Manage FAQs</a></section></div>
+}else{
+<div class="stats"><div class="stat"><strong>@Model.Donors</strong><span>Registered donors</span></div><div class="stat"><strong>@Model.Appointments</strong><span>Today’s appointments</span></div><div class="stat"><strong>@Model.AvailableUnits.ToString("0.##")</strong><span>Unexpired units</span></div><div class="stat"><strong>@Model.Events</strong><span>Upcoming events</span></div></div>
+@if(User.IsInRole("Staff")){<div class="grid"><section class="panel"><h2>Ready for today</h2><p>Open appointments and record completed donations.</p><a class="button" asp-controller="Appointments" asp-action="Index">View appointments</a></section><section class="panel"><h2>Blood inventory</h2><p>Track stock by blood group and expiry date.</p><a class="button" asp-controller="Inventory" asp-action="Index">View inventory</a></section></div>}
+else{<div class="grid"><section class="panel"><h2>Your team</h2><p>Manage staff access for this blood bank.</p><a class="button" asp-controller="Staff" asp-action="Index">Manage staff</a></section><section class="panel"><h2>Bank information</h2><p>Update contact details, location, and opening hours.</p><a class="button" asp-controller="Bank" asp-action="Edit">Edit details</a></section></div>}
+}

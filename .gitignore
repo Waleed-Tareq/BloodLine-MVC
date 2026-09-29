@@ -1,0 +1,16 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+**/*.db
+**/*.db-*
+**/App_Data/
+**/appsettings.Local.json
+**/appsettings.*.local.json
+.env
+.env.*
+*.user
+*.suo
+TestResults/
+.DS_Store
+Thumbs.db

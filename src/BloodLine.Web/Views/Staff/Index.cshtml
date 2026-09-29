@@ -1,0 +1,4 @@
+@model List<AppUser>
+@{ViewData["Title"]="Staff";}<div class="pagehead"><h1>Staff members</h1><a class="button" asp-action="Create">Add staff member</a></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Position</th><th>Action</th></tr></thead><tbody>
+@foreach(var u in Model){<tr><td>@u.FullName</td><td>@u.Email</td><td>@u.Position</td><td><form class="inline" asp-action="Delete" method="post"><input type="hidden" name="id" value="@u.Id"/><button class="danger">Remove account</button></form></td></tr>}
+@if(Model.Count==0){<tr><td colspan="4" class="empty">No staff members yet.</td></tr>}</tbody></table></div>
